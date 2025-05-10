@@ -1,0 +1,10 @@
+Flask~=3.1.0
+Flask-SQLAlchemy
+Flask-DebugToolbar
+mysqlclient
+requests~=2.32.3
+uWSGI
+SQLAlchemy~=2.0.40
+bcrypt~=4.3.0
+click~=8.1.8
+Werkzeug~=3.1.3
