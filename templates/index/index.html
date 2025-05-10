@@ -1,0 +1,85 @@
+{# index.html #}
+{% extends "common/layout_main.html" %} {# !!! IMPORTANT: Extend the original layout !!! #}
+
+{% block css %}
+    {# Include the original style.css first to get base styles #}
+    <link href="{{ buildStaticUrl('/css/style.css') }}" rel="stylesheet">
+    {# Then include our new style_index.css to override/add styles for the index page #}
+    <link href="{{ buildStaticUrl('/css/style_index.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper wrapper-content animated fadeInRight"> {# Added animation class for slight entrance effect #}
+        {# Existing data cards (iboxes) - Styles will be overridden by style_index.css #}
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-primary pull-right">日统计</span>
+                        <h5>营收概况</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">{{ data.finance.today }}</h1>
+                        <small>近30日：{{ data.finance.month }}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-primary pull-right">日统计</span>
+                        <h5>订单</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">{{ data.order.today }}</h1>
+                        <small>近30日：{{ data.order.month }}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-primary pull-right">日统计</span>
+                        <h5>会员</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">{{ data.member.total }}</h1>
+                        <small>今日新增：{{ data.member.today_new }}</small>
+                        <small>近30日新增：{{ data.member.month_new }}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-primary pull-right">日统计</span>
+                        <h5>分享</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">{{ data.shared.today }}</h1>
+                        <small>近30日：{{ data.shared.month }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {# Chart containers - Styles will be overridden by style_index.css #}
+        <div class="row">
+            {# Add a class for consistent chart container styling #}
+            <div class="col-lg-12 chart-container" id="member_order" style="height: 450px;">
+                {# Initial text removed, Highcharts will replace this #}
+            </div>
+            <div class="col-lg-12 chart-container" id="finance" style="height: 450px;">
+                 {# Initial text removed, Highcharts will replace this #}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    {# Include Highcharts library #}
+    <script src="{{ buildStaticUrl('/plugins/highcharts/highcharts.js') }}"></script>
+    {# !!! IMPORTANT: Include the new index_charts.js here !!! #}
+    <script src="{{ buildStaticUrl('/js/index_charts.js') }}"></script>
+    {# Include the page-specific JS logic #}
+    <script src="{{ buildStaticUrl('/js/index/index.js') }}"></script>
+{% endblock %}
