@@ -1,0 +1,54 @@
+.container{
+  min-height: 100%;
+  overflow: hidden;
+  overflow-y: hidden;
+}
+.userinfo {
+	display: flex;
+	flex-direction: column;
+	padding: 50rpx 0;
+	align-items: center;
+	background: #90cbfb;
+  width: 750rpx;
+}
+
+.userinfo-avatar {
+	width: 160rpx;
+	height: 160rpx;
+	margin: 20rpx;
+	border-radius: 50%;
+}
+
+.userinfo-nickname {
+  margin-top: 20rpx;
+  color: #FFF;
+}
+
+
+.my-item{
+    width: 100%;
+    background: url(https://img.icons8.com/?size=100&id=60&format=png&color=65656D75) no-repeat 750rpx center;
+    background-size: 16rpx auto,750rpx auto;
+    margin: 20rpx 0; 
+    border-bottom: 1px solid #eee;
+    height: 100rpx;
+    line-height: 100rpx;
+    padding-left: 100rpx;
+}
+
+
+.logo-container {
+  /* 可以设置容器的对齐方式，例如居中 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20rpx 0; /* 添加一些上下内边距 */
+  background: #fff; /* 根据需要设置背景色 */
+}
+
+.powered-by-logo {
+  /* 控制图片的大小 */
+  width: 800rpx; /* 根据你的图片和设计调整宽度 */
+  height: 500rpx; /* 根据你的图片和设计调整高度，mode="aspectFit"时高度可能自适应 */
+  /* 如果想让图片居中，并且父容器不是flex布局，可以在这里设置display: block; margin: 0 auto; */
+}
