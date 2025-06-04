@@ -1,0 +1,110 @@
+<!-- pages/csr/csr.wxml -->
+<view class="chat-page">
+    <scroll-view class="chat-messages" scroll-y="true" scroll-with-animation="true" scroll-into-view="{{scrollToView}}">
+        <block wx:for="{{messages}}" wx:key="timestamp">
+            <view id="msg-{{item.timestamp}}" class="message-container {{item.type}}">
+                <view class="message-bubble">
+                    <block wx:if="{{!item.data}}">
+                        {{item.text}}
+                    </block>
+                    <block wx:if="{{item.data}}">
+                        <block wx:if="{{item.data.type === 'weather'}}">
+                            <view>当前天气：{{item.data.content.weather}}，温度：{{item.data.content.temperature}}℃</view>
+                            <view>风向：{{item.data.content.winddirection}}，风力：{{item.data.content.windpower}}级</view>
+                            <view wx:if="{{item.data.content.humidity}}">湿度：{{item.data.content.humidity}}%</view>
+                            <view class="weather-suitability">{{item.data.suitability}}</view>
+                        </block>
+                        <block wx:if="{{item.data.type === 'image'}}">
+                            <image src="{{item.data.content}}" mode="widthFix" style="width: 300rpx; max-height: 200px; display: block; margin: 5rpx auto;"></image>
+                        </block>
+                         <block wx:if="{{item.data.type === 'drinks'}}">
+                             <view>{{item.text}}</view>
+                             <view wx:for="{{item.data.content}}" wx:for-item="drink" wx:for-index="drinkIndex" wx:key="*this" class="data-item">
+                                  <text>{{drinkIndex + 1}}. {{drink}}</text>
+                                  <button wx:if="{{!item.data.selected}}" size="mini" data-msg-index="{{index}}" data-drink-index="{{drinkIndex}}" bindtap="selectDrink">选择</button>
+                                  <text wx:elif="{{item.data.selectedIndex === drinkIndex}}" class="selected-text"> (已选)</text>
+                                  <text wx:elif="{{item.data.selectedIndex === -1}}" class="skipped-text"> (已跳过)</text>
+                             </view>
+                             <view class="data-item">
+                                  <text>{{item.data.content.length + 1}}. 不想喝</text>
+                                  <button wx:if="{{!item.data.selected}}" size="mini" data-msg-index="{{index}}" data-drink-index="-1" bindtap="selectDrink">选择</button>
+                                   <text wx:elif="{{item.data.selectedIndex === -1}}" class="selected-text"> (已选)</text>
+                             </view>
+                         </block>
+                        <block wx:if="{{item.data.type === 'tags_available'}}">
+                             <view>{{item.text}}</view>
+                             <view class="tag-list">{{item.data.content}}</view>
+                        </block>
+                        <block wx:if="{{item.data.type === 'recommendations'}}">
+                            <view>{{item.text}}</view>
+                            <view wx:for="{{item.data.content}}" wx:for-item="product" wx:for-index="productIndex" wx:key="id" class="data-item product-rec">
+                                <view class="product-rec-info">
+                                     <text>{{productIndex + 1}}. {{product.name}}</text>
+                                     <text class="product-rec-desc">描述: {{product['描述']}}</text>
+                                </view>
+                                 <button size="mini"
+                                         data-product-name="{{product.name}}"
+                                         data-msg-index="{{msgIndex}}"
+                                         bindtap="selectProduct">加入心仪商品
+                                 </button>
+                            </view>
+                        </block>
+                        <block wx:if="{{item.data.type === 'cart'}}">
+                             <view>{{item.text}}</view>
+                             <view wx:if="{{!item.data.content || item.data.content.length === 0}}">心仪商品是空的。</view>
+
+                             <view wx:for="{{item.data.content}}" wx:for-item="cartItem" wx:key="id"
+                                   class="data-item cart-item-container">
+
+                                  <view class="cart-item-info-clickable"
+                                        bindtap="navigateToProductDetail"
+                                        data-product-id="{{cartItem.id}}"
+                                        data-product-name="{{cartItem.name}}">
+                                      <text class="cart-item-name-display">{{index + 1}}. {{cartItem.name}}</text>
+
+                                  </view>
+
+                                  <button catchtap="deleteCartItem"
+                                          size="mini"
+                                          class="delete-button"
+                                          data-product-name="{{cartItem.name}}"
+                                          data-product-id="{{cartItem.id}}"
+                                          data-action="deleteSingleCartItem"
+                                          >删除</button>
+                             </view>
+
+                              <view wx:if="{{item.data.content && item.data.content.length > 0}}" class="data-item cart-actions-footer">
+                                   <button size="mini" bindtap="clearCart">清空所有心仪商品</button>
+                              </view>
+                         </block>
+                    </block>
+                </view>
+            </view>
+        </block>
+        <view class="message-spacer" id="bottom"></view>
+    </scroll-view>
+     <view class="input-area">
+         <block wx:if="{{showTagInput}}">
+              <view class="input-box tag-input-box">
+                  <view class="tag-sample">部分可用标签示例: {{availableTagsSample}}</view>
+                  <input
+                      class="tag-input"
+                      placeholder="请输入您喜欢的标签 (用逗号分隔)"
+                      value="{{currentTagInput}}"
+                      bindinput="handleTagInputChange"
+                      confirm-type="send"
+                      bindconfirm="confirmTags"
+                  />
+                  <button class="send-button" size="mini" bindtap="confirmTags">确认</button>
+              </view>
+         </block>
+         <block wx:else>
+              <view class="action-buttons">
+                   <button size="mini" bindtap="handleAction" data-action="a">新推荐</button>
+                   <button size="mini" bindtap="handleAction" data-action="b">改标签</button>
+                   <button size="mini" bindtap="handleAction" data-action="c">心仪商品</button>
+                   <button size="mini" bindtap="handleAction" data-action="d">退出</button>
+              </view>
+         </block>
+     </view>
+</view>

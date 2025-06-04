@@ -1,0 +1,102 @@
+/* pages/activity/index.wxss */
+.container {
+  padding: 20rpx;
+  background-color: #f8f8f8; /* 页面背景色，稍微有点灰度 */
+  min-height: 100vh; /* 确保页面高度充满屏幕 */
+  box-sizing: border-box;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx; /* 活动卡片之间的间距 */
+}
+
+.activity-item {
+  background-color: #ffffff;
+  border-radius: 20rpx; /* 圆角效果 */
+  overflow: hidden; /* 确保图片圆角 */
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.1); /* 更明显的阴影 */
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease-in-out; /* 添加 hover 效果，尽管小程序没有 hover */
+}
+
+/* 模拟点击效果（小程序没有 :active 或 :hover 的通用CSS选择器，需要通过bindtouchstart/touchend或其他方式实现，这里仅为视觉提示） */
+.activity-item:active {
+  transform: translateY(2rpx);
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.15);
+}
+
+.activity-poster {
+  width: 100%;
+  height: 360rpx; /* 图片高度 */
+  display: block;
+  /* object-fit: cover; 确保图片填充且不失真 */
+  border-top-left-radius: 20rpx; /* 匹配容器圆角 */
+  border-top-right-radius: 20rpx;
+}
+
+.activity-info {
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx; /* 文字行间距 */
+}
+
+.activity-main-title {
+  font-size: 44rpx; /* 主标题更大更醒目 */
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5rpx;
+}
+
+.activity-sub-title {
+  font-size: 30rpx;
+  color: #666;
+}
+
+.activity-time {
+  font-size: 28rpx;
+  color: #999;
+  margin-top: 10rpx;
+  font-weight: 500;
+}
+
+.activity-description {
+  font-size: 26rpx;
+  color: #888;
+  line-height: 1.5;
+  margin-top: 10rpx;
+  /* 限制描述行数 */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* 最多显示2行 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.detail-button {
+  margin-top: 30rpx;
+  background-color: #85deea; /* 使用你 TabBar 的选中颜色，保持一致性 */
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: bold;
+  border-radius: 12rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  border: none; /* 移除默认边框 */
+  padding: 0; /* 移除默认内边距 */
+}
+
+/* 移除小程序 button 默认的伪元素边框 */
+.detail-button::after {
+  border: none;
+}
+
+/* 可选：为强调突出，可以给某一个活动卡片添加特殊边框或背景 */
+/* .activity-item.highlight {
+  border: 4rpx solid #ff5722;
+  box-shadow: 0 10rpx 25rpx rgba(255, 87, 34, 0.2);
+} */

@@ -1,0 +1,18 @@
+<!-- pages/activity/index.wxml -->
+<view class="container">
+  <view class="activity-list">
+    <view class="activity-item" wx:for="{{activities}}" wx:key="id">
+      <!-- 活动图片 -->
+      <image class="activity-poster" src="{{item.image}}" mode="aspectFill"></image>
+
+      <!-- 活动信息 -->
+      <view class="activity-info">
+        <text class="activity-main-title">{{item.mainTitle}}</text>
+        <text class="activity-sub-title">{{item.subTitle}}</text>
+        <text class="activity-time">活动时间：{{item.time}}</text>
+        <text class="activity-description">{{item.description}}</text>
+        <button class="detail-button" bindtap="goToDetail" data-id="{{item.id}}">查看详情</button>
+      </view>
+    </view>
+  </view>
+</view>

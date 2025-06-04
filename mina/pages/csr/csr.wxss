@@ -1,0 +1,310 @@
+/* pages/csr/csr.wxss */
+.chat-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full viewport height */
+    background-color: #f0f0f0; /* Chat background color */
+}
+
+.chat-messages {
+    flex: 1; /* Take up remaining space */
+    padding: 20rpx;
+    box-sizing: border-box;
+}
+
+/* System (Bot) Message Style */
+.message-container.system {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20rpx;
+}
+
+.message-container.system .message-bubble {
+    background-color: #fff;
+    border-radius: 15rpx 15rpx 15rpx 0; /* Rounded corners except bottom-left */
+    padding: 15rpx 20rpx;
+    max-width: 70%; /* Limit bubble width */
+    word-break: break-word; /* Break long words */
+    box-shadow: 0 1rpx 2rpx rgba(0, 0, 0, 0.1);
+    font-size: 28rpx;
+    color: #333;
+}
+
+.weather-suitability {
+    font-weight: bold;
+    margin-top: 10rpx;
+    color: #007aff; /* Highlight suitability */
+}
+
+/* User Message Style */
+.message-container.user {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20rpx;
+}
+
+.message-container.user .message-bubble {
+    background-color: #07c160; /* WeChat green */
+    color: #fff;
+    border-radius: 15rpx 15rpx 0 15rpx; /* Rounded corners except bottom-right */
+    padding: 15rpx 20rpx;
+    max-width: 70%;
+    word-break: break-word;
+    box-shadow: 0 1rpx 2rpx rgba(0, 0, 0, 0.1);
+    font-size: 28rpx;
+}
+
+/* Styles for data within bubbles (drinks, recommendations, cart) */
+.message-bubble .data-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10rpx 0;
+    border-top: 1rpx solid rgba(0, 0, 0, 0.1); /* Separator for data items */
+    margin-top: 5rpx;
+    font-size: 26rpx; /* Slightly smaller text for list items */
+}
+.message-bubble .data-item:first-of-type {
+     border-top: none;
+     margin-top: 0;
+}
+.message-bubble .data-item text {
+     flex-grow: 1; /* 使文本尽可能占据剩余空间 */
+}
+/* 新增样式，应用于包含 "已选" 和 "已跳过" 的容器 */
+.selected-text,
+.skipped-text {
+    flex-grow: 1;  /* 占据剩余空间 */
+    text-align: right; /* 可以调整文本对齐方式，例如左对齐 */
+}
+.selected-text text,
+.skipped-text text {
+    display: block; /* 让 text 撑满 view 的空间，确保 flex-grow 生效 */
+    width: 100%;
+}
+.message-bubble .tag-list {
+     margin-top: 10rpx;
+     font-style: italic;
+     color: #555; /* Darker text for tags */
+}
+.message-container.user .message-bubble .tag-list {
+     color: #eee; /* Lighter text for tags in user bubble */
+}
+
+
+.message-bubble .product-rec {
+    flex-direction: column; /* Stack product info and button */
+    align-items: flex-start;
+}
+.message-bubble .product-rec-info {
+    width: 100%; /* Take full width */
+    margin-bottom: 10rpx;
+    display: flex;
+    flex-direction: column;
+}
+.message-bubble .product-rec-info text:first-child {
+    font-weight: bold;
+    margin-bottom: 5rpx;
+}
+.message-bubble .product-rec-desc {
+    font-size: 24rpx;
+    color: #666;
+}
+.message-container.user .message-bubble .product-rec-desc {
+     color: #eee;
+}
+
+
+.message-bubble .cart-item {
+    /* flex-direction: column; Stack cart item info */
+    align-items: flex-start;
+    font-size: 26rpx;
+}
+
+
+.message-bubble button[size="mini"] {
+    margin-left: 10rpx;
+    padding: 0 15rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 24rpx;
+}
+
+.message-spacer {
+    height: 1rpx; /* Tiny space to ensure last message scrolls fully into view */
+}
+
+
+/* Input Area */
+.input-area {
+    padding: 20rpx;
+    background-color: #f8f8f8; /* Lighter background for input area */
+    border-top: 1rpx solid #ddd;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0; /* Don't shrink input area */
+}
+
+.input-box {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 50rpx;
+    padding: 10rpx 20rpx;
+    margin-bottom: 10rpx; /* Space below input box */
+}
+
+.tag-input-box {
+    flex-direction: column; /* Stack tag sample, input, and button */
+    align-items: flex-start;
+    padding: 20rpx;
+    border-radius: 8rpx;
+}
+
+.tag-sample {
+    font-size: 24rpx;
+    color: #999;
+    margin-bottom: 10rpx;
+}
+
+.tag-input {
+    flex: 1; /* Take available space */
+    border: 1rpx solid #eee;
+    border-radius: 8rpx;
+    padding: 15rpx;
+    margin-bottom: 10rpx;
+    width: calc(100% - 30rpx); /* Adjust width considering padding */
+    box-sizing: border-box;
+    font-size: 28rpx;
+}
+
+.input-box .send-button {
+     align-self: flex-end; /* Align button to the right */
+}
+
+
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap */
+    gap: 15rpx; /* Spacing between buttons */
+    justify-content: center; /* Center buttons */
+}
+
+.action-buttons button {
+     flex-basis: calc(25% - 15rpx); /* Roughly 4 buttons per row */
+     min-width: 120rpx; /* Minimum width */
+     font-size: 26rpx;
+     padding: 0 10rpx;
+     height: 60rpx;
+     line-height: 60rpx;
+}
+
+/* Style for clear cart button inside the cart message bubble */
+.message-bubble .data-item button {
+     margin-left: 0; /* Remove left margin for clear cart button */
+     margin-top: 10rpx; /* Add top margin */
+     width: auto; /* Auto width */
+     min-width: 120rpx; /* Ensure it's not too small */
+     align-self: flex-end; /* Align clear cart button to the right */
+}
+
+/* New style for individual cart item display (to accommodate delete button) */
+.message-bubble .cart-item-display {
+    justify-content: space-between; /* Space out info and button */
+    align-items: center;
+    flex-direction: row; /* Ensure info and button are side-by-side */
+    flex-wrap: nowrap; /* Prevent wrapping */
+}
+
+.message-bubble .cart-item-info {
+    flex-grow: 1; /* Allow info text to take space */
+    margin-right: 10rpx; /* Space between text and button */
+    word-break: break-word; /* Ensure long names wrap */
+}
+
+.message-bubble .delete-button {
+    flex-shrink: 0; /* Prevent button from shrinking */
+    margin-left: 0; /* Remove default margin-left from data-item button style */
+    padding: 0 10rpx; /* Adjust padding */
+    height: 40rpx; /* Adjust height */
+    line-height: 40rpx; /* Center text */
+    font-size: 24rpx; /* Adjust font size */
+    color: #fff; /* White text */
+    background-color: #e64340; /* Red background */
+    border: none;
+}
+/* Ensure mini button styles don't override too much */
+.message-bubble button[size="mini"].delete-button {
+     margin-left: 0;
+     padding: 0 10rpx;
+     height: 40rpx;
+     line-height: 40rpx;
+     font-size: 24rpx;
+     background-color: #e64340;
+     color: #fff;
+}
+
+
+/* Style for clear cart button inside the cart message bubble */
+.message-bubble .data-item button {
+     margin-left: 0;
+     margin-top: 10rpx;
+     width: auto;
+     min-width: 120rpx;
+     align-self: flex-end;
+}
+
+/* --- 针对心仪商品列表的样式调整 --- */
+.message-bubble .cart-item-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 12rpx 0; /* 与原 .data-item 保持一致的上下内边距 */
+    border-top: 1rpx solid rgba(0, 0, 0, 0.05); /* Lighter separator */
+    margin-top: 8rpx;
+}
+.message-bubble .cart-item-container:first-of-type {
+    border-top: none;
+    margin-top: 0;
+}
+
+.message-bubble .cart-item-info-clickable {
+    flex-grow: 1; /* 让商品信息区域占据尽可能多的空间 */
+    margin-right: 20rpx; /* 与删除按钮隔开一点距离 */
+    /* cursor: pointer; /* 小程序中无效，主要靠视觉样式 */
+}
+
+/* --- 修改心仪商品名称的样式使其看起来可点击 --- */
+.message-bubble .cart-item-name-display {
+    font-size: 26rpx;
+    color: #007aff; /* 常见的链接蓝色 */
+    text-decoration: underline; /* 添加下划线 */
+    word-break: break-word;
+    /* 可以添加一个 active 状态的样式，模拟点击反馈 */
+}
+
+/* 为可点击区域（如果它是一个 view 包裹了 text）也添加 active 效果 */
+.message-bubble .cart-item-info-clickable:active .cart-item-name-display {
+    color: #0056b3; /* 点击时颜色变深 */
+    /* opacity: 0.7; */ /* 或者降低透明度 */
+}
+/* 如果 .cart-item-name-display 本身就是最外层的可点击元素，则直接对其设置 :active */
+/* .message-bubble .cart-item-name-display:active {
+    color: #0056b3;
+} */
+
+
+.message-bubble .delete-button { /* 这是您删除按钮的类名 */
+    flex-shrink: 0;
+    padding: 0 18rpx;
+    height: 48rpx;
+    line-height: 48rpx;
+    font-size: 24rpx;
+    color: #ffffff;
+    background-color: #e74c3c;
+    border: none;
+    border-radius: 8rpx;
+    margin-left: 10rpx;
+}
+
