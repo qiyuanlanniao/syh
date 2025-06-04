@@ -1,0 +1,213 @@
+/* 引入Font Awesome图标 (内联) */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+
+/* 整体页面背景 */
+body {
+    background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+}
+
+/* 登录页面整体容器 */
+.login-page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 登录面板容器 */
+.loginColumns {
+    max-width: 900px;
+    width: 100%;
+    margin: 50px auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    overflow: hidden;
+
+    background: url('../images/common/poster.jpg') no-repeat center center;
+    background-size: cover;
+
+
+}
+
+/* 登录面板行 */
+.login-panel {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* 左侧推广区域 */
+.login-promo-section {
+    /* color: #fff; */ /* 文本颜色设置为深色，以适应绿色背景 */
+    padding: 40px 30px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+/* 确保 logo-wrapper 也透明 */
+.login-promo-section .logo-wrapper {
+    background-color: transparent;
+}
+
+.login-promo-section .main-title {
+    font-size: 2.2em;
+    margin-bottom: 25px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: #333; /* 标题颜色改为深色，在绿色背景上更清晰 */
+}
+
+.login-promo-section .qr-code-box {
+    background-color: rgba(255, 255, 255, 0.5); /* 半透明白色背景，保持不变 */
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.login-promo-section .qr-code-img {
+    max-width: 200px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.login-promo-section .qr-code-text {
+    font-size: 1.1em;
+    margin-top: 15px;
+    opacity: 0.9;
+    color: #333; /* 文本颜色改为深色，在绿色背景上更清晰 */
+}
+
+.login-promo-section .promo-text {
+    font-size: 1em;
+    line-height: 1.6;
+    opacity: 0.8;
+    color: #333; /* 文本颜色改为深色，在绿色背景上更清晰 */
+}
+
+/* logo样式 */
+.logo-wrapper {
+    margin-bottom: 20px;
+}
+
+.login-logo {
+    max-width: 200px;
+    height: auto;
+}
+
+/* 右侧登录表单区域 */
+.login-form-section {
+    padding: 40px 30px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    /* **** 关键修改 3: 右侧登录表单区域背景色改为透明 **** */
+    background-color: rgba(255, 255, 255, 0.7); /* 从 rgba(255, 255, 255, 0.7) 改为 transparent */
+}
+
+.login-form-section .login-box {
+    padding: 0;
+    border: none;
+    box-shadow: none;
+}
+
+.login-form-section .login-title {
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.login-form-section .text-muted {
+    color: #777 !important;
+}
+
+/* 输入框带图标 */
+.input-with-icon {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-with-icon .icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a0a0a0;
+    font-size: 1.1em;
+    z-index: 2;
+}
+
+.input-with-icon .form-control {
+    padding-left: 45px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    height: 45px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.input-with-icon .form-control:focus {
+    border-color: #18a689;
+    box-shadow: 0 0 0 0.2rem rgba(24, 166, 137, 0.25);
+}
+
+/* 登录按钮 */
+.login-button {
+    background-color: #18a689;
+    border-color: #18a689;
+    padding: 12px 0;
+    font-size: 1.1em;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #148f77;
+    border-color: #148f77;
+}
+
+.login-footer a {
+    color: #eee;
+    text-decoration: none;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+    color: #fff; /* 鼠标悬停时变为白色 */
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .loginColumns {
+        margin: 30px 15px;
+        border-radius: 8px;
+    }
+
+    .login-panel {
+        flex-direction: column;
+    }
+
+    .login-promo-section,
+    .login-form-section {
+        border-radius: 0;
+    }
+
+    .login-promo-section {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    .login-form-section {
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+
+    .login-promo-section .main-title {
+        font-size: 1.8em;
+    }
+
+    .login-promo-section .qr-code-img {
+        max-width: 150px;
+    }
+}

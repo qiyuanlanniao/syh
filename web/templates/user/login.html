@@ -1,0 +1,44 @@
+{% extends "common/layout_user.html" %}
+
+{% block content %}
+<div class="login-page-wrapper">
+    <div class="loginColumns animated fadeInDown">
+        <div class="row login-panel">
+
+            <div class="col-md-6 login-promo-section text-center d-flex flex-column justify-content-center align-items-center">
+                <div class="qr-code-box">
+                    <img src="{{ buildStaticUrl('/images/common/mini_qrcode.jpg') }}" alt="扫码关注" class="img-fluid qr-code-img">
+                    <p class="text-white-50 mt-3 qr-code-text">
+                        扫码关注官方公众号
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 login-form-section">
+                <div class="ibox-content login-box">
+                    <div class="m-t login_wrap" role="form">
+                        <div class="form-group text-center mb-4">
+                            <h2 class="font-bold login-title">欢迎登录</h2>
+                            <p class="text-muted">请输入您的账户信息</p>
+                        </div>
+                        <div class="form-group input-with-icon">
+                            <i class="fa fa-user icon"></i>
+                            <input type="text" name="login_name" class="form-control" placeholder="请输入登录用户名">
+                        </div>
+                        <div class="form-group input-with-icon">
+                            <i class="fa fa-lock icon"></i>
+                            <input type="password" name="login_pwd" class="form-control" placeholder="请输入登录密码">
+                        </div>
+                        <button type="button" class="btn btn-primary block full-width m-b mt-4 do-login login-button">登录</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{{ buildStaticUrl('/js/user/login.js') }}">
+</script>
+{% endblock %}

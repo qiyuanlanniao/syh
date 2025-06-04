@@ -1,0 +1,249 @@
+/* static/css/style_index.css */
+
+/* Define a blue palette */
+/* Using CSS variables makes it easy to adjust the theme later */
+:root {
+    --dark-blue-bg: #0F2A48; /* Deep blue background */
+    --medium-blue-card: rgba(26, 63, 97, 0.6); /* Slightly lighter blue for cards/modules, semi-transparent */
+    --light-blue-text: #A0D0E8; /* Light blue for main text */
+    --sky-blue-highlight: #87CEFA; /* Sky blue for highlights/accents */
+    --white-text: #FFFFFF; /* White for important numbers/titles */
+    --border-blue: rgba(135, 206, 250, 0.2); /* Subtle blue border */
+    --gradient-start: #153454;
+    --gradient-end: #0F2A48;
+}
+
+/* --- Overall Layout Adjustments --- */
+/* Make page-wrapper background transparent to let body/wrapper color show */
+/* Note: Original layout_main.html had inline style `background-color: #ffffff;` on #page-wrapper.
+   We need to override this with !important if necessary, or remove it from layout_main.html
+   if it's *only* used for the dashboard. Let's try overriding. */
+#page-wrapper.gray-bg { /* Keep the gray-bg class selector for specificity */
+    background-color: transparent !important; /* Override the white background */
+    color: var(--light-blue-text); /* Set default text color for the page */
+}
+
+/* Set background for the whole wrapper if page-wrapper is transparent */
+/* Or set body background if wrapper doesn't cover the full screen */
+body {
+    background: var(--gradient-start);
+    background: linear-gradient(to bottom right, var(--gradient-start) 0%, var(--gradient-end) 100%) fixed; /* Fixed background for gradient effect */
+    color: var(--light-blue-text); /* Ensure body text is correct color */
+}
+
+/* Ensure wrapper takes up full height if background is on body */
+#wrapper {
+    /* min-height: 100vh; */ /* Uncomment if wrapper doesn't fill screen */
+}
+
+
+/* --- Left Navigation Bar Adjustments --- */
+/* Subtly adjust sidebar colors to fit the blue theme */
+.navbar-static-side {
+    background-color: rgba(15, 42, 72, 0.8); /* A slightly darker, semi-transparent blue for sidebar */
+    border-right: 1px solid var(--border-blue); /* Keep a subtle border */
+}
+
+/* The original layout already sets nav-header background to #87CEFA. Keep it. */
+/*
+.nav-header {
+    background-color: var(--sky-blue-highlight);
+}
+*/
+
+.profile-element .logo-img {
+    border: 3px solid var(--sky-blue-highlight); /* Highlight logo border */
+    box-shadow: 0 0 10px rgba(135, 206, 250, 0.5); /* Subtle glow */
+}
+
+
+.nav > li > a {
+    color: var(--light-blue-text); /* Menu item text color */
+}
+
+.nav > li > a:hover,
+.nav > li > a:focus {
+    background-color: rgba(135, 206, 250, 0.1); /* Subtle hover background */
+    color: var(--white-text); /* White text on hover */
+}
+
+/* Active menu item */
+.nav .active > a,
+.nav .active > a:hover,
+.nav .active > a:focus {
+    background-color: var(--dark-blue-bg); /* Sky blue background for active */
+    color: var(--sky-blue-highlight) !important; /* Dark text for active, use !important if needed */
+    font-weight: bold;
+}
+
+/* --- Top Navigation Bar Adjustments --- */
+.navbar-static-top {
+    background-color: transparent; /* Transparent top bar */
+    border-bottom: none; /* Remove border */
+}
+
+.navbar-top-links li a {
+     color: var(--light-blue-text); /* Top icon/link color */
+}
+.navbar-top-links li a:hover {
+     color: var(--white-text); /* White on hover */
+}
+
+.navbar-top-links .welcome-message {
+     color: var(--light-blue-text); /* Welcome message color */
+}
+
+.user_info .dropdown-menu {
+    background-color: var(--medium-blue-card); /* Dropdown background */
+    border: 1px solid var(--border-blue);
+}
+/* Adjust dropdown menu item colors similar to sidebar */
+.user_info .dropdown-menu li a {
+    color: var(--light-blue-text);
+}
+.user_info .dropdown-menu li a:hover {
+    background-color: var(--dark-blue-bg);
+    color: var(--white-text);
+}
+.user_info .dropdown-messages-box {
+    color: var(--light-blue-text);
+}
+.user_info .dropdown-messages-box a {
+    color: var(--sky-blue-highlight); /* Highlight links */
+}
+.user_info .divider {
+     background-color: var(--border-blue);
+}
+.user_info .link-block a {
+     color: var(--sky-blue-highlight);
+}
+
+
+/* --- Content Area (Ibox & Charts) Styling --- */
+
+/* Override default ibox styling for data cards */
+.ibox.float-e-margins {
+    background-color: var(--medium-blue-card); /* Card background */
+    border: none; /* Remove default border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* More prominent shadow for depth */
+    overflow: hidden; /* Keep content within bounds */
+    transition: transform 0.3s ease; /* Add a slight hover animation */
+}
+.ibox.float-e-margins:hover {
+    transform: translateY(-5px); /* Lift slightly on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+
+.ibox-title {
+    background-color: rgba(135, 206, 250, 0.1); /* Very subtle blue background for title */
+    border-bottom: 1px solid var(--border-blue); /* Subtle border */
+    color: var(--white-text); /* White title text */
+    font-size: 16px;
+    padding: 12px 15px; /* Slightly more padding */
+}
+
+.ibox-title h5 {
+    color: var(--white-text); /* White text */
+    font-size: 16px;
+    font-weight: normal; /* Keep title weight normal */
+}
+
+.ibox-title .label {
+    background-color: var(--sky-blue-highlight); /* Sky blue label background */
+    color: var(--dark-blue-bg); /* Dark text for label */
+    /* Position is fine from original theme */
+}
+
+.ibox-content {
+    padding: 20px 15px;
+    color: var(--light-blue-text); /* Light blue content text */
+    background-color: #339AF03D;
+}
+
+/* ### START MODIFICATION FOR MORE PROMINENT SKY-BLUE NUMBERS ### */
+.ibox-content h1.no-margins {
+    color: var(--white-text); /* Keep white as the base color */
+    font-size: 48px; /* Slightly increase size further for prominence */
+    font-weight: bold; /* Keep bold */
+    margin-bottom: 8px !important; /* Adjust margin */
+
+    /* Use multiple layers of sky-blue shadow for a bright, wide glow */
+    text-shadow:
+        /* Inner glow, sharp - Reduced opacity */
+        0 0 3px rgba(135, 206, 250, 0.8), /* 从 var(--sky-blue-highlight) 转换为 rgba 并降低透明度 */
+        /* Medium glow, slightly wider - Reduced opacity */
+        0 0 6px rgba(135, 206, 250, 0.6), /* 从 var(--sky-blue-highlight) 转换为 rgba 并降低透明度 */
+        /* Wider glow, slightly more opaque - Reduced opacity */
+        0 0 10px rgba(135, 206, 250, 0.5), /* 从 0.8 降低到 0.5 */
+        /* Outer glow, softer - Reduced opacity */
+        0 0 15px rgba(135, 206, 250, 0.3), /* 从 0.6 降低到 0.3 */
+        /* Widest glow, subtle - Reduced opacity */
+        0 0 20px rgba(135, 206, 250, 0.15); /* 从 0.4 降低到 0.15 */
+    /* 你可以根据需要调整 rgba() 中最后一个数字（透明度）来进一步控制亮度 */
+
+
+    letter-spacing: 2px; /* Increase letter spacing slightly more for readability */
+}
+
+.ibox-content small {
+    color: var(--light-blue-text); /* Light blue text for small info */
+    font-size: 13px;
+}
+
+/* Chart Area Styling (using the new chart-container class) */
+.chart-container {
+    background-color: var(--medium-blue-card); /* Chart area background */
+    border: none; /* Remove default border */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    padding: 20px; /* Add padding */
+    margin-bottom: 25px; /* Add margin below charts */
+    position: relative; /* Needed for potential absolute positioning within */
+    overflow: hidden; /* Hide potential chart overflow */
+}
+
+/* Add subtle background pattern or overlay for texture (optional炫技) */
+/*
+.chart-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(135, 206, 250, 0.05) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+*/
+
+/* Ensure Highcharts container fits within the styled div */
+.highcharts-container {
+    width: 100% !important; /* Ensure it takes full width */
+    height: 100% !important; /* Ensure it takes full height */
+}
+
+/* Adjust specific Bootstrap elements if they clash */
+/* For example, button colors, panel titles etc. */
+
+/* Animation class from index.html */
+.fadeInRight {
+  animation-name: fadeInRight;
+}
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
